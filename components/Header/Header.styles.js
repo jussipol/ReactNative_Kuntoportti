@@ -10,7 +10,7 @@ export const Wrapper = styled.View`
 
 export const LogoText = styled.Text`
   font-size: 32px;
-  font-family: 'monospace';
+
   color: #f0f8ff;
 `;
 

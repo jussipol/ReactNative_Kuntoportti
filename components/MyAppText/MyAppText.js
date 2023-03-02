@@ -14,6 +14,7 @@ export const MyAppText = ({children}) => {
           : {
               fontSize: 22,
               fontFamily: 'arial',
+              color: '#f0f8ff',
             },
       ]}>
       {children}
