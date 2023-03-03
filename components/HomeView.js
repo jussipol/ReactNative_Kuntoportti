@@ -49,7 +49,7 @@ const HomeView = ({navigation, route}) => {
 
       <View style={{flex: 1}}>
         <ImageBackground
-          source={require('../images/fire.jpg')}
+          source={require('../images/background_kunto.png')}
           resizeMode="cover">
           <Header />
           {loading ? (
