@@ -29,6 +29,6 @@ export const ProgressText = styled.Text`
   padding-top: 10px;
   font-size: 16px;
   font-style: italic;
-  color: rgba(235, 227, 123, 0.8);
+  color: rgba(18, 15, 11, 0.8);
   align-self: center;
 `;

@@ -7,14 +7,14 @@ export const MyAppText = ({children}) => {
       style={[
         Platform.OS === 'android'
           ? {
-              fontSize: 22,
+              fontSize: 24,
               fontFamily: 'monospace',
-              color: '#f0f8ff',
+              color: '#0d030ce6',
             }
           : {
-              fontSize: 22,
+              fontSize: 24,
               fontFamily: 'arial',
-              color: '#f0f8ff',
+              color: '#0d030ce6',
             },
       ]}>
       {children}

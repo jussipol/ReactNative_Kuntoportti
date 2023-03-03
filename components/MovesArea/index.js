@@ -40,14 +40,14 @@ export const MovesArea = ({
               <MoveImage
                 source={{uri: image}}
                 resizeMode="cover"
-                style={{width: deviceWidth, aspectRatio: 1}}
+                // style={{width: deviceWidth, aspectRatio: 1}}
               />
             </MoveImageContainer>
           </ListItem>
         );
       })}
       <BackButton onPress={() => handleBackPress()}>
-        <MyAppText>Done!</MyAppText>
+        <MyAppText>Valmis!</MyAppText>
       </BackButton>
     </Wrapper>
   );

@@ -80,7 +80,7 @@ const Moves = ({navigation, route}) => {
       <View style={{flex: 1}}>
         {/* <Header /> */}
         <ImageBackground
-          source={require('../images/foggy.jpg')}
+          source={require('../images/background_less.png')}
           resizeMode="cover">
           <MovesArea
             handleBackPress={handleBackPress}

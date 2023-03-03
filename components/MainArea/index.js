@@ -36,7 +36,7 @@ export const MainArea = ({
               style={[Platform.OS === 'android' ? {elevation: 50} : {}]}>
               <MyAppText>{name}</MyAppText>
             </StyledPressable>
-            <ProgressText>{`completed: ${buttons[id]}`}</ProgressText>
+            <ProgressText>{`Suoritettu: ${buttons[id]}`}</ProgressText>
           </ListItem>
         );
       })}

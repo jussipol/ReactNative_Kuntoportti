@@ -12,18 +12,21 @@ export const ListItem = styled.View`
   margin: 7px;
   padding: 5px;
   /* background-color: darkgrey; */
-  width: 90%;
+  /* width: 90%; */
   /* justify-content: center; */
+  align-items: center;
 `;
 
 export const ListHeader = styled.View`
   padding-bottom: 10px;
   align-items: center;
+  /* background-color: red; */
 `;
 
 export const MoveImageContainer = styled.View`
   overflow: hidden;
   border-radius: 60px;
+  /* width: 200px; */
   /* padding-top: 10px; */
 `;
 
@@ -32,8 +35,9 @@ export const MoveImage = styled.Image`
   /* overflow: hidden; // put image in container */
   /* justify-content: center;
   align-items: center; */
-  /* height: 200px;
-  width: 200px; */
+  /* height: 200px; */
+  width: 300px;
+  aspect-ratio: 1;
 `;
 
 export const MoveItem = styled.View`
