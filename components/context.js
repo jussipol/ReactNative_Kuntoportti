@@ -24,6 +24,7 @@ const initialState = {
     pro: 0,
     extreme: 0,
   },
+  showIntro: true,
   loading: false,
   stateMoveCategories: moveCategories,
   randomMoves: [
@@ -107,8 +108,16 @@ const AppProvider = ({children}) => {
     dispatch({type: 'DIFFICULTY', payload: id});
   };
 
+  const setShowIntro = () => {
+    dispatch({type: 'INTRO'});
+  };
+
   useEffect(() => {
     loadDbAndFetchMoves();
+    console.log('timeout SET');
+    setTimeout(() => {
+      setShowIntro();
+    }, 5000);
   }, []);
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-MoveItem;
+
 import {Platform, TextInput, ImageBackground} from 'react-native';
 //Styles
 import {
@@ -34,7 +34,10 @@ export const MovesArea = ({
         return (
           <ListItem key={id}>
             <ListHeader>
-              <MyAppText>{`${name} ${difficulty}`}</MyAppText>
+              <MyAppText
+                style={{
+                  fontStyle: 'italic',
+                }}>{`${name} ${difficulty}`}</MyAppText>
             </ListHeader>
             <MoveImageContainer>
               <MoveImage

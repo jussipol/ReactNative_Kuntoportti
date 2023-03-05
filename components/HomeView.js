@@ -8,6 +8,7 @@ import {
   StatusBar,
   useColorScheme,
   Platform,
+  Image,
 } from 'react-native';
 import {useHeaderHeight} from '@react-navigation/elements';
 
@@ -24,7 +25,8 @@ const difficultyLevels = [
 ];
 
 const HomeView = ({navigation, route}) => {
-  const {addMoveToDb, buttons, loading, setDifficulty} = useGlobalContext();
+  const {addMoveToDb, buttons, loading, setDifficulty, showIntro} =
+    useGlobalContext();
 
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -44,29 +46,41 @@ const HomeView = ({navigation, route}) => {
   };
 
   return (
-    <ScrollView>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+    <>
+      {showIntro ? (
+        <View style={{flex: 1}}>
+          <Image
+            source={require('../images/intro130.gif')}
+            resizeMode="cover"
+            style={{width: width, height: height}}
+          />
+        </View>
+      ) : (
+        <ScrollView>
+          <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
 
-      <View style={{flex: 1}}>
-        <ImageBackground
-          source={require('../images/background_kunto.png')}
-          resizeMode="cover">
-          <Header />
-          {loading ? (
-            <></>
-          ) : (
-            <MainArea
-              buttons={buttons}
-              handlePress={handlePress}
-              difficultyLevels={difficultyLevels}
-              height={height}
-              width={width}
-              headerHeight={headerHeight}
-            />
-          )}
-        </ImageBackground>
-      </View>
-    </ScrollView>
+          <View style={{flex: 1}}>
+            <ImageBackground
+              source={require('../images/background_kunto.png')}
+              resizeMode="cover">
+              <Header />
+              {loading ? (
+                <></>
+              ) : (
+                <MainArea
+                  buttons={buttons}
+                  handlePress={handlePress}
+                  difficultyLevels={difficultyLevels}
+                  height={height}
+                  width={width}
+                  headerHeight={headerHeight}
+                />
+              )}
+            </ImageBackground>
+          </View>
+        </ScrollView>
+      )}
+    </>
   );
 };
 

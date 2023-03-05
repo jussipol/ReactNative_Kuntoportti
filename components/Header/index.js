@@ -10,7 +10,7 @@ export const Header = () => (
       flex: 0,
     }}>
     {/* <StyledImage source={require('../../images/tiny_logo.png')}></StyledImage> */}
-    <LogoText>Valitse vaikeusaste!*</LogoText>
+    <LogoText>Kuntoportti</LogoText>
     {/* {Platform.OS === 'windows' ? (
       <LogoText>Menu</LogoText>
     ) : (

@@ -53,7 +53,7 @@ export const MoveItem = styled.View`
 export const BackButton = styled.Pressable`
   align-items: center;
   margin: 5px;
-  background-color: green;
+  background-color: #607f91;
   border-radius: 10px;
   padding: 5px;
 `;

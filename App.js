@@ -33,12 +33,21 @@ const App = () => {
           <Stack.Screen
             name="Home"
             component={HomeView}
-            options={{title: 'Koti'}}
+            options={{
+              title: 'Koti',
+              headerStyle: {backgroundColor: '#607f91'},
+              headerTintColor: '#f5f6f7',
+              headerShown: false,
+            }}
           />
           <Stack.Screen
             name="Moves"
             component={Moves}
-            options={{title: 'Liikkeet'}}
+            options={{
+              title: 'Liikkeet',
+              headerStyle: {backgroundColor: '#607f91'},
+              headerTintColor: '#f5f6f7',
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>

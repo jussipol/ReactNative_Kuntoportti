@@ -9,8 +9,8 @@ export const Wrapper = styled.View`
 `;
 
 export const LogoText = styled.Text`
-  font-size: 32px;
-
+  font-size: 46px;
+  font-weight: 700;
   color: rgba(18, 15, 11, 0.8);
 `;
 

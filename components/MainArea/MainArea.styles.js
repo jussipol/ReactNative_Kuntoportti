@@ -20,7 +20,7 @@ export const StyledPressable = styled.Pressable`
   align-items: center;
   justify-content: center;
   border-radius: 30px;
-  background-color: #778899;
+  background-color: #607f91;
   opacity: 0.9;
   height: 50%;
 `;

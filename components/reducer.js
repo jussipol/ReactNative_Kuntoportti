@@ -2,9 +2,9 @@ import {LogBox} from 'react-native';
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'UPDATE': {
-      console.log('UPDATE called');
-      return {...state, buttons: action.payload, loading: false};
+    case 'INTRO': {
+      console.log('INTRO called');
+      return {...state, showIntro: false};
     }
 
     case 'LOADING': {
