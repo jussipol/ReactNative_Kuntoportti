@@ -11,7 +11,6 @@ import {useHeaderHeight} from '@react-navigation/elements';
 import data from '../data';
 
 //Components
-import {Header} from './Header';
 import {MovesArea} from './MovesArea';
 import {useGlobalContext} from './context';
 
@@ -30,9 +29,7 @@ const Moves = ({navigation, route}) => {
     Platform.OS === 'windows'
       ? navigation.push('Home')
       : navigation.navigate('Home');
-    console.log(route);
   };
-  console.log(currentDifficulty);
 
   const moveInfo = [
     {

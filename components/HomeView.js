@@ -41,8 +41,6 @@ const HomeView = ({navigation, route}) => {
     Platform.OS === 'windows'
       ? navigation.push('Moves')
       : navigation.navigate(`Moves`);
-    console.log(route);
-    console.log(`buttons in homeview ${buttons}`);
   };
 
   return (

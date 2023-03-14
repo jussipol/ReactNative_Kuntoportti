@@ -22,9 +22,7 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       SplashScreen.hide();
-      console.log('timedin');
     }, 200);
-    console.log('timedout');
   }, []);
   return (
     <AppProvider>

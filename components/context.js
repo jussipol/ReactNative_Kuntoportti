@@ -6,7 +6,6 @@ import reducer from './reducer';
 const AppContext = React.createContext();
 
 enablePromise(true);
-DEBUG(true);
 
 // Amount of moves in data per category, update if moves added
 const moveCategories = {
@@ -114,7 +113,6 @@ const AppProvider = ({children}) => {
 
   useEffect(() => {
     loadDbAndFetchMoves();
-    console.log('timeout SET');
     setTimeout(() => {
       setShowIntro();
     }, 5000);

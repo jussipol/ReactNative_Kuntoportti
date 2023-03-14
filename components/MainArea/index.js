@@ -11,7 +11,6 @@ import {
 
 //Components
 import {MyAppText} from '../MyAppText/MyAppText';
-import {useGlobalContext} from '../context';
 
 export const MainArea = ({
   handlePress,
@@ -21,7 +20,6 @@ export const MainArea = ({
   headerHeight,
   buttons,
 }) => {
-  console.log('rendered');
   return (
     <Wrapper
       style={{
