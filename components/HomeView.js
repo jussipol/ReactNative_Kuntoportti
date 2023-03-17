@@ -60,7 +60,8 @@ const HomeView = ({navigation, route}) => {
           <View style={{flex: 1}}>
             <ImageBackground
               source={require('../images/background_kunto.png')}
-              resizeMode="cover">
+              resizeMode="cover"
+              style={[Platform.OS === 'ios' ? {paddingTop: 20} : {}]}>
               <Header />
               {loading ? (
                 <></>
