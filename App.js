@@ -45,7 +45,6 @@ const App = () => {
               title: 'Liikkeet',
               headerStyle: {backgroundColor: '#607f91'},
               headerTintColor: '#f5f6f7',
-              headerBackTitleVisible: false,
             }}
           />
         </Stack.Navigator>
