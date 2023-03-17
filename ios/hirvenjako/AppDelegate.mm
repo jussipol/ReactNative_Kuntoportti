@@ -3,6 +3,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import "RNSplashScreen.h" // splashscreen import
 
 #import <React/RCTAppSetupUtils.h>
 
@@ -54,6 +55,8 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  // set splashscreen to show
+  [RNSplashScreen show];
   return YES;
 }
 
