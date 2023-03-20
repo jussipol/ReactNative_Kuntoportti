@@ -17,6 +17,7 @@ import {Header} from './Header';
 import {MainArea} from './MainArea';
 import {useGlobalContext} from './context';
 
+// Set a list to map through during rendering, names for the categories
 const difficultyLevels = [
   {name: 'Helppo', id: 'helppo'},
   {name: 'Haastava', id: 'haastava'},
@@ -35,6 +36,7 @@ const HomeView = ({navigation, route}) => {
   const headerHeight = useHeaderHeight();
 
   const handlePress = id => {
+    // Handle difficulty choice, pick amount of moves and store into db
     setDifficulty(id);
     addMoveToDb(id);
 
@@ -45,7 +47,7 @@ const HomeView = ({navigation, route}) => {
 
   return (
     <>
-      {showIntro ? (
+      {showIntro ? ( // When loading for the first time, show the intro
         <View style={{flex: 1}}>
           <Image
             source={require('../images/intro130.gif')}

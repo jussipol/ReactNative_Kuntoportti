@@ -24,13 +24,16 @@ const Moves = ({navigation, route}) => {
 
   const headerHeight = useHeaderHeight();
 
+  // Handle the navigation back, randomize the moves for the next set
   const handleBackPress = () => {
     randomizeMoves();
     Platform.OS === 'windows'
       ? navigation.push('Home')
       : navigation.navigate('Home');
   };
-
+  // Make a list of objects to map through in MovesArea
+  // and fill the information from data.js, according the the
+  // chosen variables
   const moveInfo = [
     {
       name: data[randomMoves[0]].name,

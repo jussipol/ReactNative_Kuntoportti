@@ -14,6 +14,7 @@ const moveCategories = {
   upper: 14,
 };
 
+// The state used in all functions before there's any data
 const initialState = {
   database: null,
   moves: moveItems,
@@ -36,10 +37,14 @@ const initialState = {
   currentDifficulty: 'helppo',
 };
 
+// Provides the functions for all the components inside the app
 const AppProvider = ({children}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const loadDbAndFetchMoves = () => {
+    // Set loading, create the initial database if it doesn't exist, open and connect to the db
+    // Add a table if it doesn't exist, and fetch the information from the table
+    // All in that order, after the previous one completes
     dispatch({type: 'LOADING', payload: true});
     openDatabase('user_db')
       .then(DB => {
@@ -111,6 +116,8 @@ const AppProvider = ({children}) => {
     dispatch({type: 'INTRO'});
   };
 
+  // When first loaded, run the function to fetch/ create all the db data,
+  // and let the intro run. After 5 seconds, close the intro screen and show the loaded app
   useEffect(() => {
     loadDbAndFetchMoves();
     setTimeout(() => {

@@ -26,6 +26,7 @@ export const MainArea = ({
         height: height - 100 - headerHeight,
       }}>
       {difficultyLevels.map(({name, id}) => {
+        // Make a button for all of the specified difficulty levels
         return (
           <ListItem key={id}>
             <StyledPressable

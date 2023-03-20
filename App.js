@@ -16,9 +16,11 @@ import HomeView from './components/HomeView.js';
 import Moves from './components/Moves.js';
 import {AppProvider} from './components/context.js';
 
+// Create Navigation elements
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  // Render after all components are loaded and intro animation is done
   useEffect(() => {
     setTimeout(() => {
       SplashScreen.hide();
@@ -29,6 +31,7 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
+            // Create the actual screen with their options
             name="Home"
             component={HomeView}
             options={{

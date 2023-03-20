@@ -18,6 +18,7 @@ export const MovesArea = ({handleBackPress, moveInfo}) => {
   return (
     <Wrapper style={{}}>
       {moveInfo.map(({name, id, image, difficulty}) => {
+        // Show the randomized move, how many reps and load the gif
         return (
           <ListItem key={id}>
             <ListHeader>
