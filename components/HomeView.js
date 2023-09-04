@@ -35,6 +35,9 @@ const HomeView = ({navigation, route}) => {
     changeFoodCalories,
     foodName,
     foodCalories,
+    changeSelectedFood,
+    addSelectionCalories,
+    resetCalories,
   } = useGlobalContext();
 
   const isDarkMode = useColorScheme() === 'dark';
@@ -80,6 +83,9 @@ const HomeView = ({navigation, route}) => {
                 <></>
               ) : (
                 <MainArea
+                  resetCalories={resetCalories}
+                  addSelectionCalories={addSelectionCalories}
+                  changeSelectedFood={changeSelectedFood}
                   changeFoodName={changeFoodName}
                   changeFoodCalories={changeFoodCalories}
                   changeCalories={changeCalories}

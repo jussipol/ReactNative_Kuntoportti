@@ -37,6 +37,7 @@ const initialState = {
   addedCalories: 0,
   foodName: '',
   foodCalories: 0,
+  selectedFood: '',
   showIntro: true,
   loading: false,
   stateMoveCategories: moveCategories,
@@ -147,6 +148,10 @@ const AppProvider = ({children}) => {
     dispatch({type: 'ADDCALORIES'});
   };
 
+  const addSelectionCalories = () => {
+    dispatch({type: 'ADDSELECTIONCALORIES'});
+  };
+
   const changeCalories = id => {
     dispatch({type: 'CHANGEINPUT', payload: id});
   };
@@ -157,6 +162,14 @@ const AppProvider = ({children}) => {
 
   const changeFoodCalories = id => {
     dispatch({type: 'CHANGEFOODCALORIES', payload: id});
+  };
+
+  const changeSelectedFood = id => {
+    dispatch({type: 'CHANGESELECTEDFOOD', payload: id});
+  };
+
+  const resetCalories = () => {
+    dispatch({type: 'RESETCALORIES'});
   };
 
   // When first loaded, run the function to fetch/ create all the db data,
@@ -179,6 +192,9 @@ const AppProvider = ({children}) => {
         changeCalories,
         changeFoodName,
         changeFoodCalories,
+        changeSelectedFood,
+        addSelectionCalories,
+        resetCalories,
       }}>
       {children}
     </AppContext.Provider>

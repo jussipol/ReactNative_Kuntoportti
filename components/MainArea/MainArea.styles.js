@@ -10,8 +10,8 @@ export const ListItem = styled.View`
   flex: 1;
   border-radius: 20px;
   margin: 7px;
-  padding: 20px;
-  background-color: darkgrey;
+  padding: 10px;
+  /* background-color: darkgrey; */
   width: 70%;
   align-self: center;
   align-items: center;
@@ -19,9 +19,9 @@ export const ListItem = styled.View`
 `;
 
 export const NumField = styled.TextInput`
-  width: 100%;
+  width: 80%;
   background-color: white;
-  margin-top: 15px;
+  margin-top: 10px;
 `;
 
 export const StyledPressable = styled.Pressable`
@@ -30,9 +30,9 @@ export const StyledPressable = styled.Pressable`
   border-radius: 30px;
   background-color: #607f91;
   opacity: 0.9;
-  height: 15%;
+  height: 13%;
   margin-top: 15px;
-  width: 100%;
+  width: 75%;
 `;
 
 export const ProgressText = styled.Text`

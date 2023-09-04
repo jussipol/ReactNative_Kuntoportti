@@ -28,6 +28,9 @@ export const MainArea = ({
   changeCalories,
   changeFoodName,
   changeFoodCalories,
+  changeSelectedFood,
+  addSelectionCalories,
+  resetCalories,
 }) => {
   return (
     <Wrapper
@@ -36,11 +39,12 @@ export const MainArea = ({
       }}>
       <ListItem>
         <SelectDropdown
-          data={selectOptions}
+          data={Object.keys(buttons)}
           defaultValueByIndex={1} // use default value by index or default value
           defaultValue={'Canada'} // use default value by index or default value
           onSelect={(selectedItem, index) => {
             console.log(selectedItem, index);
+            changeSelectedFood(selectedItem);
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
             return selectedItem;
@@ -49,6 +53,12 @@ export const MainArea = ({
             return item;
           }}
         />
+        <StyledPressable
+          android_ripple={{color: 'lightslategray', radius: 10}}
+          onPress={addSelectionCalories}
+          style={[Platform.OS === 'android' ? {elevation: 50} : {}]}>
+          <MyAppText>Submit</MyAppText>
+        </StyledPressable>
         <NumField editable onChangeText={id => changeCalories(id)}></NumField>
         <StyledPressable
           android_ripple={{color: 'lightslategray', radius: 10}}
@@ -57,10 +67,19 @@ export const MainArea = ({
           <MyAppText>Submit</MyAppText>
         </StyledPressable>
         <MyAppText>{calories}</MyAppText>
+        <StyledPressable
+          android_ripple={{color: 'lightslategray', radius: 10}}
+          onPress={resetCalories}
+          style={[Platform.OS === 'android' ? {elevation: 50} : {}]}>
+          <MyAppText>Reset</MyAppText>
+        </StyledPressable>
       </ListItem>
       <ListItem>
         <MyAppText>Name</MyAppText>
-        <NumField editable onChangeText={id => changeFoodName(id)}></NumField>
+        <NumField
+          editable
+          maxLength={39}
+          onChangeText={id => changeFoodName(id)}></NumField>
         <MyAppText>Calories</MyAppText>
         <NumField
           editable

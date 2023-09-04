@@ -46,6 +46,18 @@ const reducer = (state, action) => {
       return {...state, calories: tempCalories};
     }
 
+    case 'RESETCALORIES': {
+      console.log(state.calories, state.addedCalories);
+      return {...state, calories: 0};
+    }
+
+    case 'ADDSELECTIONCALORIES': {
+      console.log(state.calories, state.selectedFood);
+      let tempCalories;
+      tempCalories = +state.calories + +state.buttons[state.selectedFood];
+      return {...state, calories: tempCalories};
+    }
+
     case 'CHANGEINPUT': {
       console.log(state.addedCalories);
       return {...state, addedCalories: action.payload};
@@ -59,6 +71,11 @@ const reducer = (state, action) => {
     case 'CHANGEFOODCALORIES': {
       console.log(state.foodCalories);
       return {...state, foodCalories: action.payload};
+    }
+
+    case 'CHANGESELECTEDFOOD': {
+      console.log(state.selectedFood);
+      return {...state, selectedFood: action.payload};
     }
   }
 };
