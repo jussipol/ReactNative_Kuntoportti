@@ -18,16 +18,24 @@ import {MainArea} from './MainArea';
 import {useGlobalContext} from './context';
 
 // Set a list to map through during rendering, names for the categories
-const difficultyLevels = [
-  {name: 'Helppo', id: 'helppo'},
-  {name: 'Haastava', id: 'haastava'},
-  {name: 'Pro', id: 'pro'},
-  {name: 'Extreme', id: 'extreme'},
-];
 
 const HomeView = ({navigation, route}) => {
-  const {addMoveToDb, buttons, loading, setDifficulty, showIntro} =
-    useGlobalContext();
+  const {
+    addMoveToDb,
+    buttons,
+    loading,
+    setDifficulty,
+    showIntro,
+    selectOptions,
+    calories,
+    addedCalories,
+    changeCalories,
+    addCalories,
+    changeFoodName,
+    changeFoodCalories,
+    foodName,
+    foodCalories,
+  } = useGlobalContext();
 
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -35,14 +43,17 @@ const HomeView = ({navigation, route}) => {
 
   const headerHeight = useHeaderHeight();
 
-  const handlePress = id => {
+  const handlePress = () => {
+    console.log('handlePress called');
     // Handle difficulty choice, pick amount of moves and store into db
-    setDifficulty(id);
-    addMoveToDb(id);
+    // setDifficulty(id);
 
-    Platform.OS === 'windows'
-      ? navigation.push('Moves')
-      : navigation.navigate(`Moves`);
+    console.log(foodName, foodCalories);
+    addMoveToDb(foodName, foodCalories);
+
+    // Platform.OS === 'windows'
+    //   ? navigation.push('Moves')
+    //   : navigation.navigate(`Moves`);
   };
 
   return (
@@ -69,9 +80,15 @@ const HomeView = ({navigation, route}) => {
                 <></>
               ) : (
                 <MainArea
+                  changeFoodName={changeFoodName}
+                  changeFoodCalories={changeFoodCalories}
+                  changeCalories={changeCalories}
+                  addCalories={addCalories}
+                  addedCalories={addedCalories}
+                  calories={calories}
+                  selectOptions={selectOptions}
                   buttons={buttons}
                   handlePress={handlePress}
-                  difficultyLevels={difficultyLevels}
                   height={height}
                   width={width}
                   headerHeight={headerHeight}

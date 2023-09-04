@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 
 export const Wrapper = styled.View`
   flex: 1;
+  /* align-items: center; */
   /* background-color: rgba(121, 125, 152, 0.3); */ // dim the background image
 `;
 
@@ -10,10 +11,17 @@ export const ListItem = styled.View`
   border-radius: 20px;
   margin: 7px;
   padding: 20px;
-  /* background-color: darkgrey; */
+  background-color: darkgrey;
   width: 70%;
   align-self: center;
-  /* align-items: center; */
+  align-items: center;
+  /* justify-content: center; */
+`;
+
+export const NumField = styled.TextInput`
+  width: 100%;
+  background-color: white;
+  margin-top: 15px;
 `;
 
 export const StyledPressable = styled.Pressable`
@@ -22,7 +30,9 @@ export const StyledPressable = styled.Pressable`
   border-radius: 30px;
   background-color: #607f91;
   opacity: 0.9;
-  height: 50%;
+  height: 15%;
+  margin-top: 15px;
+  width: 100%;
 `;
 
 export const ProgressText = styled.Text`

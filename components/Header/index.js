@@ -8,6 +8,6 @@ export const Header = () => (
     style={{
       flex: 0,
     }}>
-    <LogoText>Kuntoportti</LogoText>
+    <LogoText>CalorieCounter</LogoText>
   </Wrapper>
 );

@@ -1,6 +1,5 @@
 import React, {useState, useContext, useReducer, useEffect} from 'react';
 import {openDatabase, enablePromise, DEBUG} from 'react-native-sqlite-storage';
-import moveItems from '../data';
 import reducer from './reducer';
 
 const AppContext = React.createContext();
@@ -17,23 +16,37 @@ const moveCategories = {
 // The state used in all functions before there's any data
 const initialState = {
   database: null,
-  moves: moveItems,
   buttons: {
-    helppo: 0,
-    haastava: 0,
-    pro: 0,
-    extreme: 0,
+    egg: 0,
   },
+  selectOptions: [
+    'Egypt',
+    'Canada',
+    'Australia',
+    'Ireland',
+    'Brazil',
+    'England',
+    'Dubai',
+    'France',
+    'Germany',
+    'Saudi Arabia',
+    'Argentina',
+    'India',
+  ],
+  calories: 0,
+  addedCalories: 0,
+  foodName: '',
+  foodCalories: 0,
   showIntro: true,
   loading: false,
   stateMoveCategories: moveCategories,
-  randomMoves: [
-    Math.floor(Math.random() * moveCategories.low),
-    Math.floor(Math.random() * moveCategories.mid) + moveCategories.low,
-    Math.floor(Math.random() * moveCategories.upper) +
-      moveCategories.low +
-      moveCategories.mid,
-  ],
+  // randomMoves: [
+  //   Math.floor(Math.random() * moveCategories.low),
+  //   Math.floor(Math.random() * moveCategories.mid) + moveCategories.low,
+  //   Math.floor(Math.random() * moveCategories.upper) +
+  //     moveCategories.low +
+  //     moveCategories.mid,
+  // ],
   currentDifficulty: 'helppo',
 };
 
@@ -66,47 +79,61 @@ const AppProvider = ({children}) => {
 
   const addTable = tx => {
     tx.executeSql(
-      `CREATE TABLE IF NOT EXISTS usedmoves (id INTEGER PRIMARY KEY AUTOINCREMENT, moveid VARCHAR(20))`,
+      `CREATE TABLE IF NOT EXISTS usedmoves (id INTEGER PRIMARY KEY AUTOINCREMENT, fooditem VARCHAR(40), calories INTEGER)`,
     ).catch(error => {
       console.log(error);
     });
   };
 
   const getUsedMoves = tx => {
-    tx.executeSql(`SELECT moveid FROM usedmoves`)
+    tx.executeSql(`SELECT fooditem, calories as calorie FROM usedmoves`)
       .then(([tx, results]) => {
         let tempButtons = initialState.buttons;
-        let resultArray = results.rows.raw();
-        for (let i in tempButtons) {
-          tempButtons[i] = resultArray.reduce((a, b) => {
-            if (b['moveid'] == i) {
-              return a + 1;
-            } else {
-              return a;
-            }
-          }, 0);
+        console.log(results);
+        let resultArray = results.rows.length;
+        for (let i = 0; i < resultArray; i++) {
+          let row = results.rows.item(i);
+          // console.log(row);
+          if (row.fooditem in tempButtons) {
+            continue;
+          } else {
+            tempButtons[row.fooditem] = row.calorie;
+          }
         }
+        console.log(tempButtons);
         state.buttons = tempButtons;
+        // // for (let i in tempButtons) {
+        // //   tempButtons[i] = resultArray.reduce((a, b) => {
+        // //     if (b['fooditem'] == i) {
+        // //       return a + 1;
+        // //     } else {
+        // //       return a;
+        // //     }
+        // //   }, 0);
+        // // }
+        // state.buttons = tempButtons;
       })
       .catch(error => console.log(error));
   };
 
-  const addMoveToDb = id => {
+  const addMoveToDb = (id, calorie) => {
     // dispatch({type: 'LOADING', payload: id});
+    console.log('addMovecalled');
     state.database.transaction(tx => {
-      tx.executeSql(`INSERT INTO usedmoves (moveid) VALUES (?)`, [id]).then(
-        result => {
-          state.database.transaction(getUsedMoves).then(() => {
-            dispatch({type: 'LOADING', payload: false});
-          });
-        },
-      );
+      tx.executeSql(
+        `INSERT INTO usedmoves (fooditem, calories) VALUES (?, ?)`,
+        [id, calorie],
+      ).then(result => {
+        state.database.transaction(getUsedMoves).then(() => {
+          dispatch({type: 'LOADING', payload: false});
+        });
+      });
     });
   };
 
-  const randomizeMoves = () => {
-    dispatch({type: 'RANDOMIZE'});
-  };
+  // const randomizeMoves = () => {
+  //   dispatch({type: 'RANDOMIZE'});
+  // };
 
   const setDifficulty = id => {
     dispatch({type: 'DIFFICULTY', payload: id});
@@ -114,6 +141,22 @@ const AppProvider = ({children}) => {
 
   const setShowIntro = () => {
     dispatch({type: 'INTRO'});
+  };
+
+  const addCalories = () => {
+    dispatch({type: 'ADDCALORIES'});
+  };
+
+  const changeCalories = id => {
+    dispatch({type: 'CHANGEINPUT', payload: id});
+  };
+
+  const changeFoodName = id => {
+    dispatch({type: 'CHANGEFOODNAME', payload: id});
+  };
+
+  const changeFoodCalories = id => {
+    dispatch({type: 'CHANGEFOODCALORIES', payload: id});
   };
 
   // When first loaded, run the function to fetch/ create all the db data,
@@ -131,8 +174,11 @@ const AppProvider = ({children}) => {
         ...state,
         addMoveToDb,
         getUsedMoves,
-        randomizeMoves,
         setDifficulty,
+        addCalories,
+        changeCalories,
+        changeFoodName,
+        changeFoodCalories,
       }}>
       {children}
     </AppContext.Provider>

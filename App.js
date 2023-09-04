@@ -41,7 +41,7 @@ const App = () => {
               headerShown: false,
             }}
           />
-          <Stack.Screen
+          {/* <Stack.Screen
             name="Moves"
             component={Moves}
             options={{
@@ -49,7 +49,7 @@ const App = () => {
               headerStyle: {backgroundColor: '#607f91'},
               headerTintColor: '#f5f6f7',
             }}
-          />
+          /> */}
         </Stack.Navigator>
       </NavigationContainer>
     </AppProvider>
