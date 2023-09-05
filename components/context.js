@@ -19,21 +19,8 @@ const initialState = {
   buttons: {
     egg: 0,
   },
-  selectOptions: [
-    'Egypt',
-    'Canada',
-    'Australia',
-    'Ireland',
-    'Brazil',
-    'England',
-    'Dubai',
-    'France',
-    'Germany',
-    'Saudi Arabia',
-    'Argentina',
-    'India',
-  ],
   calories: 0,
+  lastCalories: 0,
   addedCalories: 0,
   foodName: '',
   foodCalories: 0,
@@ -90,7 +77,6 @@ const AppProvider = ({children}) => {
     tx.executeSql(`SELECT fooditem, calories as calorie FROM usedmoves`)
       .then(([tx, results]) => {
         let tempButtons = initialState.buttons;
-        console.log(results);
         let resultArray = results.rows.length;
         for (let i = 0; i < resultArray; i++) {
           let row = results.rows.item(i);
@@ -101,7 +87,6 @@ const AppProvider = ({children}) => {
             tempButtons[row.fooditem] = row.calorie;
           }
         }
-        console.log(tempButtons);
         state.buttons = tempButtons;
         // // for (let i in tempButtons) {
         // //   tempButtons[i] = resultArray.reduce((a, b) => {
@@ -119,7 +104,6 @@ const AppProvider = ({children}) => {
 
   const addMoveToDb = (id, calorie) => {
     // dispatch({type: 'LOADING', payload: id});
-    console.log('addMovecalled');
     state.database.transaction(tx => {
       tx.executeSql(
         `INSERT INTO usedmoves (fooditem, calories) VALUES (?, ?)`,
@@ -172,6 +156,10 @@ const AppProvider = ({children}) => {
     dispatch({type: 'RESETCALORIES'});
   };
 
+  const cancelCalories = () => {
+    dispatch({type: 'CANCELCALORIES'});
+  };
+
   // When first loaded, run the function to fetch/ create all the db data,
   // and let the intro run. After 5 seconds, close the intro screen and show the loaded app
   useEffect(() => {
@@ -195,6 +183,7 @@ const AppProvider = ({children}) => {
         changeSelectedFood,
         addSelectionCalories,
         resetCalories,
+        cancelCalories,
       }}>
       {children}
     </AppContext.Provider>

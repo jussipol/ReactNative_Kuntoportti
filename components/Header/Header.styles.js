@@ -11,7 +11,8 @@ export const Wrapper = styled.View`
 export const LogoText = styled.Text`
   font-size: 46px;
   font-weight: 700;
-  color: rgba(18, 15, 11, 0.8);
+  font-style: italic;
+  color: rgba(215, 255, 211, 0.95);
 `;
 
 export const StyledImage = styled.Image`

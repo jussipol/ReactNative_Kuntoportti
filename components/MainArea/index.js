@@ -5,13 +5,18 @@ import {Platform, TextInput} from 'react-native';
 import {
   Wrapper,
   ListItem,
+  ListItem2,
+  ListItem3,
   StyledPressable,
+  StyledPressable2,
   ProgressText,
   NumField,
+  NumField2,
+  ButtonWrapper,
 } from './MainArea.styles';
 
 //Components
-import {MyAppText} from '../MyAppText/MyAppText';
+import {MyAppText, MyAppText2, MyAppText3} from '../MyAppText/MyAppText';
 import SelectDropdown from 'react-native-select-dropdown';
 
 export const MainArea = ({
@@ -31,6 +36,7 @@ export const MainArea = ({
   changeSelectedFood,
   addSelectionCalories,
   resetCalories,
+  cancelCalories,
 }) => {
   return (
     <Wrapper
@@ -40,10 +46,8 @@ export const MainArea = ({
       <ListItem>
         <SelectDropdown
           data={Object.keys(buttons)}
-          defaultValueByIndex={1} // use default value by index or default value
-          defaultValue={'Canada'} // use default value by index or default value
+          defaultValueByIndex={0} // use default value by index or default value
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
             changeSelectedFood(selectedItem);
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
@@ -52,45 +56,61 @@ export const MainArea = ({
           rowTextForSelection={(item, index) => {
             return item;
           }}
+          buttonStyle={{
+            width: '55%',
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+          }}
         />
         <StyledPressable
-          android_ripple={{color: 'lightslategray', radius: 10}}
+          android_ripple={{color: 'black', radius: 5}}
           onPress={addSelectionCalories}
           style={[Platform.OS === 'android' ? {elevation: 50} : {}]}>
-          <MyAppText>Submit</MyAppText>
-        </StyledPressable>
-        <NumField editable onChangeText={id => changeCalories(id)}></NumField>
-        <StyledPressable
-          android_ripple={{color: 'lightslategray', radius: 10}}
-          onPress={addCalories}
-          style={[Platform.OS === 'android' ? {elevation: 50} : {}]}>
-          <MyAppText>Submit</MyAppText>
-        </StyledPressable>
-        <MyAppText>{calories}</MyAppText>
-        <StyledPressable
-          android_ripple={{color: 'lightslategray', radius: 10}}
-          onPress={resetCalories}
-          style={[Platform.OS === 'android' ? {elevation: 50} : {}]}>
-          <MyAppText>Reset</MyAppText>
+          <MyAppText>Select</MyAppText>
         </StyledPressable>
       </ListItem>
       <ListItem>
-        <MyAppText>Name</MyAppText>
-        <NumField
-          editable
-          maxLength={39}
-          onChangeText={id => changeFoodName(id)}></NumField>
-        <MyAppText>Calories</MyAppText>
-        <NumField
-          editable
-          onChangeText={id => changeFoodCalories(id)}></NumField>
+        <NumField editable onChangeText={id => changeCalories(id)}></NumField>
         <StyledPressable
-          android_ripple={{color: 'lightslategray', radius: 10}}
-          onPress={handlePress}
+          android_ripple={{color: 'black', radius: 5}}
+          onPress={addCalories}
           style={[Platform.OS === 'android' ? {elevation: 50} : {}]}>
-          <MyAppText>Submit</MyAppText>
+          <MyAppText>Add</MyAppText>
         </StyledPressable>
       </ListItem>
+      <ListItem2>
+        <MyAppText3>{`Today's calories: ${calories}`}</MyAppText3>
+        <ButtonWrapper>
+          <StyledPressable
+            android_ripple={{color: 'black', radius: 5}}
+            onPress={resetCalories}
+            style={[Platform.OS === 'android' ? {elevation: 50} : {}]}>
+            <MyAppText>Reset</MyAppText>
+          </StyledPressable>
+          <StyledPressable
+            android_ripple={{color: 'black', radius: 5}}
+            onPress={cancelCalories}
+            style={[Platform.OS === 'android' ? {elevation: 50} : {}]}>
+            <MyAppText>Cancel</MyAppText>
+          </StyledPressable>
+        </ButtonWrapper>
+      </ListItem2>
+      <ListItem3>
+        <MyAppText2>Name</MyAppText2>
+        <NumField2
+          editable
+          maxLength={39}
+          onChangeText={id => changeFoodName(id)}></NumField2>
+        <MyAppText2>Calories</MyAppText2>
+        <NumField2
+          editable
+          onChangeText={id => changeFoodCalories(id)}></NumField2>
+        <StyledPressable2
+          android_ripple={{color: 'black', radius: 5}}
+          onPress={handlePress}
+          style={[Platform.OS === 'android' ? {elevation: 50} : {}]}>
+          <MyAppText>Save food</MyAppText>
+        </StyledPressable2>
+      </ListItem3>
     </Wrapper>
   );
 };

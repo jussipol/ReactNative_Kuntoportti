@@ -40,41 +40,50 @@ const reducer = (state, action) => {
     }
 
     case 'ADDCALORIES': {
-      console.log(state.calories, state.addedCalories);
-      let tempCalories;
+      let tempCalories, previousCalories;
+      previousCalories = state.calories;
       tempCalories = +state.calories + +state.addedCalories;
+      return {...state, calories: tempCalories, lastCalories: previousCalories};
+    }
+
+    case 'CANCELCALORIES': {
+      let tempCalories;
+      tempCalories = state.lastCalories;
       return {...state, calories: tempCalories};
     }
 
     case 'RESETCALORIES': {
-      console.log(state.calories, state.addedCalories);
       return {...state, calories: 0};
     }
 
     case 'ADDSELECTIONCALORIES': {
-      console.log(state.calories, state.selectedFood);
-      let tempCalories;
+      let tempCalories, previousCalories;
+      previousCalories = state.calories;
       tempCalories = +state.calories + +state.buttons[state.selectedFood];
-      return {...state, calories: tempCalories};
+      if (tempCalories) {
+        return {
+          ...state,
+          calories: tempCalories,
+          lastCalories: previousCalories,
+        };
+      } else {
+        return {...state};
+      }
     }
 
     case 'CHANGEINPUT': {
-      console.log(state.addedCalories);
       return {...state, addedCalories: action.payload};
     }
 
     case 'CHANGEFOODNAME': {
-      console.log(state.foodName);
       return {...state, foodName: action.payload};
     }
 
     case 'CHANGEFOODCALORIES': {
-      console.log(state.foodCalories);
       return {...state, foodCalories: action.payload};
     }
 
     case 'CHANGESELECTEDFOOD': {
-      console.log(state.selectedFood);
       return {...state, selectedFood: action.payload};
     }
   }

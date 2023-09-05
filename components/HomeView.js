@@ -38,6 +38,7 @@ const HomeView = ({navigation, route}) => {
     changeSelectedFood,
     addSelectionCalories,
     resetCalories,
+    cancelCalories,
   } = useGlobalContext();
 
   const isDarkMode = useColorScheme() === 'dark';
@@ -47,11 +48,9 @@ const HomeView = ({navigation, route}) => {
   const headerHeight = useHeaderHeight();
 
   const handlePress = () => {
-    console.log('handlePress called');
     // Handle difficulty choice, pick amount of moves and store into db
     // setDifficulty(id);
 
-    console.log(foodName, foodCalories);
     addMoveToDb(foodName, foodCalories);
 
     // Platform.OS === 'windows'
@@ -75,7 +74,7 @@ const HomeView = ({navigation, route}) => {
 
           <View style={{flex: 1}}>
             <ImageBackground
-              source={require('../images/background_kunto.png')}
+              source={require('../images/background_breakfast2.jpg')}
               resizeMode="cover"
               style={[Platform.OS === 'ios' ? {paddingTop: 30} : {}]}>
               <Header />
@@ -83,6 +82,7 @@ const HomeView = ({navigation, route}) => {
                 <></>
               ) : (
                 <MainArea
+                  cancelCalories={cancelCalories}
                   resetCalories={resetCalories}
                   addSelectionCalories={addSelectionCalories}
                   changeSelectedFood={changeSelectedFood}
